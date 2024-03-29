@@ -6,9 +6,9 @@
 
 template<typename T, int size>
 class TStack {
- private:
-    static const int k = size;
-    T data[k];
+private:
+    static const int KSize = size;
+    T data[KSize];
     int top;
 
  public:
