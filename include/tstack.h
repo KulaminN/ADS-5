@@ -4,10 +4,11 @@
 
 #include <string>
 
-template<typename T, const int size>
+template<typename T, int size>
 class TStack {
  private:
-    T data[size];
+    static const int k = size;
+    T data[k];
     int top;
 
  public:

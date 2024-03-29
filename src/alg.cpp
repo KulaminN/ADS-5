@@ -10,7 +10,7 @@ std::string infx2pstfx(std::string inf) {
     for (char i : inf) {
         if (i == '(') {
             stack1.push(i);
-        } else if (i > '0' && i < '9') {
+        } else if (i >= '0' && i <= '9') {
             exit += i;
             exit += ' ';
         } else if (i == ')') {
@@ -86,6 +86,7 @@ std::string infx2pstfx(std::string inf) {
 
 int eval(std::string pref) {
     std::string sTemp;
+    char cTemp;
     for (char i : pref) {
         if ((i >= '0' && i <= '9')) {
             sTemp += i;
@@ -96,19 +97,23 @@ int eval(std::string pref) {
         } else if (i == '+' || i == '-' || i == '*' || i == '/') {
             switch (i) {
                 case '*': {
-                    stack2.push(stack2.pop() * stack2.pop());
+                    cTemp = stack2.pop();
+                    stack2.push(stack2.pop() * cTemp);
                     break;
                 }
                 case '/': {
-                    stack2.push(stack2.pop() / stack2.pop());
+                    cTemp = stack2.pop();
+                    stack2.push(stack2.pop() / cTemp);
                     break;
                 }
                 case '+': {
-                    stack2.push(stack2.pop() + stack2.pop());
+                    cTemp = stack2.pop();
+                    stack2.push(stack2.pop() + cTemp);
                     break;
                 }
                 case '-': {
-                    stack2.push(stack2.pop() - stack2.pop());
+                    cTemp = stack2.pop();
+                    stack2.push(stack2.pop() - cTemp);
                     break;
                 }
             }
