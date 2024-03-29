@@ -7,10 +7,10 @@ TStack<int, 100> stack2;
 
 std::string infx2pstfx(std::string inf) {
     std::string exit;
-    for (char i: inf) {
-        if (i == '(')
+    for (char i : inf) {
+        if (i == '(') {
             stack1.push(i);
-        else if (i > '0' && i < '9') {
+        } else if (i > '0' && i < '9') {
             exit += i;
             exit += ' ';
         } else if (i == ')') {
@@ -49,8 +49,9 @@ std::string infx2pstfx(std::string inf) {
                     }
                 }
                 stack1.push(i);
-            } else
+            } else {
                 stack1.push(i);
+            }
         } else if (i == '*' || i == '/') {
             if (!stack1.isEmpty()) {
                 switch (stack1.get()) {
@@ -68,20 +69,24 @@ std::string infx2pstfx(std::string inf) {
                     }
                 }
                 stack1.push(i);
-            } else
+            } else {
                 stack1.push(i);
+            }
         }
     }
-    while (!stack1.isEmpty()) {
-        exit += stack1.pop();
-        exit += ' ';
+    if (!stack1.isEmpty()) {
+        while (!stack1.isEmpty()) {
+            exit += stack1.pop();
+            exit += ' ';
+        }
+        exit.pop_back();
     }
     return exit;
 }
 
 int eval(std::string pref) {
     std::string sTemp;
-    for (char i: pref) {
+    for (char i : pref) {
         if ((i >= '0' && i <= '9')) {
             sTemp += i;
 

@@ -4,12 +4,13 @@
 
 #include <string>
 
-template<typename T, int size>
+template<typename T, const int size>
 class TStack {
-private:
+ private:
     T data[size];
     int top;
-public:
+
+ public:
     TStack() : top(0) {}
 
     void push(const T &item) {
@@ -35,7 +36,6 @@ public:
             return data[top - 1];
         else
             throw std::string("Empty");
-
     }
 };
 
