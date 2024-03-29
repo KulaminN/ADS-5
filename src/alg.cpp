@@ -16,6 +16,7 @@ std::string infx2pstfx(std::string inf) {
         } else if (i == ')') {
             while (stack1.get() != '(' && !stack1.isEmpty()) {
                 exit += stack1.pop();
+                exit += ' ';
             }
             if (stack1.get() == '(')
                 stack1.pop();
@@ -24,21 +25,25 @@ std::string infx2pstfx(std::string inf) {
                 switch (stack1.get()) {
                     case '*': {
                         exit += '*';
+                        exit += ' ';
                         stack1.pop();
                         break;
                     }
                     case '/': {
                         exit += '/';
+                        exit += ' ';
                         stack1.pop();
                         break;
                     }
                     case '+': {
                         exit += '+';
+                        exit += ' ';
                         stack1.pop();
                         break;
                     }
                     case '-': {
                         exit += '-';
+                        exit += ' ';
                         stack1.pop();
                         break;
                     }
@@ -51,11 +56,13 @@ std::string infx2pstfx(std::string inf) {
                 switch (stack1.get()) {
                     case '*': {
                         exit += '*';
+                        exit += ' ';
                         stack1.pop();
                         break;
                     }
                     case '/': {
                         exit += '/';
+                        exit += ' ';
                         stack1.pop();
                         break;
                     }
@@ -67,6 +74,7 @@ std::string infx2pstfx(std::string inf) {
     }
     while (!stack1.isEmpty()) {
         exit += stack1.pop();
+        exit += ' ';
     }
     return exit;
 }
@@ -77,7 +85,7 @@ int eval(std::string pref) {
         if ((i >= '0' && i <= '9')) {
             sTemp += i;
 
-        } else if (i == ' ') {
+        } else if (i == ' ' && !sTemp.empty()) {
             stack2.push(std::stoi(sTemp));
             sTemp.clear();
         } else if (i == '+' || i == '-' || i == '*' || i == '/') {
